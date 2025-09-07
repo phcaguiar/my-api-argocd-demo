@@ -1,5 +1,5 @@
 my-api:
-  replicaCount: 1
+  replicaCount: 2
   image:
     repository: nginx
     tag: latest
@@ -24,4 +24,4 @@ my-api:
       # command: ["echo", "Deploy concluído!"]
       # args: []
       command: ["sh", "-c"]
-      args: ["echo 'Deploy concluído!'; sleep 60"]
+      args: ["for i in $(seq 1 30); do echo $i; sleep 1; done"]
