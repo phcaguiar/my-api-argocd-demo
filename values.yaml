@@ -17,11 +17,11 @@ my-api:
       memory: "512Mi"
 
 # O hook é opcional, então não precisa estar presente aqui
-# postHook:
-#   enabled: true
-#   image:
-#     repository: busybox
-#     tag: latest
-#   command:
-#     - "echo"
-#     - "Hello from post-hook"
+  postHook:
+    enabled: true
+    image:
+      repository: busybox
+      tag: latest
+    command:
+      - "echo"
+      - "Hello from post-hook"
