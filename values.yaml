@@ -3,7 +3,6 @@ image:
   repository: nginx
   tag: latest
 
-
 my-api:
   replicaCount: 3
   image:
@@ -16,10 +15,13 @@ my-api:
     limits:
       cpu: "500m"
       memory: "512Mi"
-  postHook:
-  enabled: false
-  image:
-    repository: alpine
-    tag: latest
-  command: ["echo", "hostname"]
 
+# O hook é opcional, então não precisa estar presente aqui
+# postHook:
+#   enabled: true
+#   image:
+#     repository: busybox
+#     tag: latest
+#   command:
+#     - "echo"
+#     - "Hello from post-hook"
