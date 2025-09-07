@@ -121,3 +121,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+postHook:
+  enabled: false
+  image:
+    repository: alpine
+    tag: latest
+  command: ["echo", "hello world"]

@@ -1,0 +1,16 @@
+{{- if .Values.postHook.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ printf "%s-post-hook" .Release.Name | trunc 63 | trimSuffix "-" }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-hook
+          image: "{{ .Values.postHook.image.repository }}:{{ .Values.postHook.image.tag }}"
+          command: {{ toJson .Values.postHook.command }}
+{{- end }}

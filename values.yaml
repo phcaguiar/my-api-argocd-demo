@@ -17,7 +17,7 @@ my-api:
       cpu: "500m"
       memory: "512Mi"
   postHook:
-  enabled: true
+  enabled: false
   image:
     repository: alpine
     tag: latest
