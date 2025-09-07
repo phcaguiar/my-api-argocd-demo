@@ -17,6 +17,6 @@ my-api:
       memory: "512Mi"
 
   postRolloutHook:
-    enabled: false
-    command: ["echo", "Aplicação my-api sincronizada com sucesso!"]
+    enabled: true
+    command: ["echo", "Aplicação my-api sincronizada com sucesso! Esse é um comando de POST-ROLLOUT"]
     containerName: "post-rollout-hook"
