@@ -16,12 +16,7 @@ my-api:
       cpu: "500m"
       memory: "512Mi"
 
-# O hook é opcional, então não precisa estar presente aqui
-  postHook:
-    enabled: true
-    image:
-      repository: busybox
-      tag: latest
-    command:
-      - "echo"
-      - "Hello from post-hook"
+  postRolloutHook:
+    enabled: false
+    command: ["echo", "Aplicação my-api sincronizada com sucesso!"]
+    containerName: "post-rollout-hook"

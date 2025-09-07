@@ -14,6 +14,14 @@ spec:
         - setWeight: 50
         - pause: { duration: 20s }
         - setWeight: 100
+{{- if .Values.postRolloutHook.enabled }}
+        - pause: {}
+        - hook:
+            type: PostRollout
+            exec:
+              command: {{ .Values.postRolloutHook.command }}
+            containerName: {{ .Values.postRolloutHook.containerName | default "post-rollout-hook" }}
+{{- end }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
@@ -29,15 +37,8 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu | default "100m" }}
+              memory: {{ .Values.resources.requests.memory | default "128Mi" }}
             limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
-{{- if .Values.postHook.enabled }}
-      # Hook container (executa como initContainer do rollout)
-      initContainers:
-        - name: {{ printf "%s-post-hook" .Release.Name | trunc 63 | trimSuffix "-" }}
-          image: "{{ .Values.postHook.image.repository }}:{{ .Values.postHook.image.tag }}"
-          command: {{ toJson .Values.postHook.command }}
-{{- end }}
+              cpu: {{ .Values.resources.limits.cpu | default "500m" }}
+              memory: {{ .Values.resources.limits.memory | default "512Mi" }}

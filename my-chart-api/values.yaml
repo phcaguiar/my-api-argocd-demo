@@ -122,10 +122,8 @@ tolerations: []
 
 affinity: {}
 
-# Configuração do hook opcional (post-rollout hook)
-postHook:
-  enabled: false          # por padrão desabilitado
-  image:
-    repository: ""       # será definido pelo usuário da aplicação
-    tag: ""              # será definido pelo usuário da aplicação
-  command: []            # comando a ser executado no hook, vazio por padrão
+# Hook de PostRollout, desabilitado por padrão
+postRolloutHook:
+  enabled: false
+  command: ["echo", "PostRollout hook executed"]
+  containerName: "post-rollout-hook"
