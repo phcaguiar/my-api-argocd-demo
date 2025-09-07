@@ -121,9 +121,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-# Hook de PostRollout, desabilitado por padrão
-postRolloutHook:
-  enabled: false
-  command: ["echo", "PostRollout hook executed"]
-  containerName: "post-rollout-hook"

@@ -10,18 +10,12 @@ spec:
     canary:
       steps:
         - setWeight: 25
-        - pause: { duration: 20s }
+        - pause:
+            duration: 20s
         - setWeight: 50
-        - pause: { duration: 20s }
+        - pause:
+            duration: 20s
         - setWeight: 100
-{{- if .Values.postRolloutHook.enabled }}
-        - pause: {}
-        - hook:
-            type: PostRollout
-            exec:
-              command: {{ .Values.postRolloutHook.command }}
-            containerName: {{ .Values.postRolloutHook.containerName | default "post-rollout-hook" }}
-{{- end }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
