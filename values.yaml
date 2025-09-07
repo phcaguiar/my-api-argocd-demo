@@ -5,7 +5,7 @@ my-api:
     tag: latest
   resources:
     requests:
-      cpu: "100m"
+      cpu: "50m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -18,29 +18,18 @@ my-api:
       - weight: 60
         pause: 5s
       - weight: 100
-        pause: 15s
+        pause: 5s
 
-  postSyncJobs:
-    - generateName: my-app-postsync-
-      annotations:
-        argocd.argoproj.io/hook: PostSync
-        argocd.argoproj.io/hook-delete-policy: HookSucceeded
-      backoffLimit: 1
-      restartPolicy: Never
-      container:
-        name: job1
-        image: busybox
-        command: ["sh", "-c"]
-        args: ["for i in $(seq 1 15); do echo $i; sleep 1; done"]
-
-    - generateName: my-app-postsync-
-      annotations:
-        argocd.argoproj.io/hook: PostSync
-        argocd.argoproj.io/hook-delete-policy: HookSucceeded
-      backoffLimit: 1
-      restartPolicy: Never
-      container:
-        name: job2
-        image: busybox
-        command: ["sh", "-c"]
-        args: ["for i in $(seq 1 10); do echo $i; sleep 1; done"]
+  jobpostsynctest:
+    enabled: true
+    generateName: my-app-postsync-
+    annotations:
+      argocd.argoproj.io/hook: PostSync
+      argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    backoffLimit: 1
+    restartPolicy: Never
+    container:
+      name: post-deploy
+      image: busybox
+      command: ["sh", "-c"]
+      args: ["for i in $(seq 1 10); do echo $i; sleep 1; done"]
