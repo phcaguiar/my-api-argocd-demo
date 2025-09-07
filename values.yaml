@@ -16,4 +16,10 @@ my-api:
     limits:
       cpu: "500m"
       memory: "512Mi"
+  postHook:
+  enabled: true
+  image:
+    repository: alpine
+    tag: latest
+  command: ["echo", "hostname"]
 
