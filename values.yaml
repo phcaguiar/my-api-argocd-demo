@@ -14,11 +14,11 @@ my-api:
   canary:
     steps:
       - weight: 25
-        pause: 10s
+        pause: 1m
       - weight: 50
-        pause: 10s
+        pause: 3m
       - weight: 100
-        pause: 10s
+        pause: 5m
 
   postSync:
     enabled: trye
