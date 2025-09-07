@@ -14,3 +14,25 @@
 #           command: ["echo", "PostSync hook executed"]
 #       restartPolicy: Never
 #   backoffLimit: 2
+
+
+{{- if .Values.postSync.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: {{ .Values.postSync.generateName }}
+  annotations:
+    {{- range $key, $value := .Values.postSync.annotations }}
+    {{ $key }}: {{ $value }}
+    {{- end }}
+spec:
+  backoffLimit: {{ .Values.postSync.backoffLimit }}
+  template:
+    spec:
+      restartPolicy: {{ .Values.postSync.restartPolicy }}
+      containers:
+        - name: {{ .Values.postSync.container.name }}
+          image: "{{ .Values.postSync.container.image }}"
+          command: {{ toJson .Values.postSync.container.command }}
+          args: {{ toJson .Values.postSync.container.args }}
+{{- end }}

@@ -10,3 +10,16 @@ my-api:
     limits:
       cpu: "500m"
       memory: "512Mi"
+  postSync:
+    enabled: false
+    generateName: my-app-postsync-
+    annotations:
+      argocd.argoproj.io/hook: PostSync
+      argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    backoffLimit: 1
+    restartPolicy: Never
+    container:
+      name: slack-notification
+      image: busybox
+      command: ["echo", "Deploy concluído!"]
+      args: []

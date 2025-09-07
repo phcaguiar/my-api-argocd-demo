@@ -121,3 +121,17 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+postSync:
+  enabled: false
+  generateName: app-slack-notification-
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  backoffLimit: 2
+  restartPolicy: Never
+  container:
+    name: slack-notification
+    image: busybox
+    command: ["echo", "PostSync hook executed"]
+    args: []
