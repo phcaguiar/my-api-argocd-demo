@@ -1,10 +1,11 @@
 {{- if .Values.postHook.enabled }}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ include "my-api.fullname" . }}-post-hook"
+  name: {{ .Release.Name }}-post-hook
   labels:
-    app: "{{ include "my-api.name" . }}"
+    app: {{ .Release.Name }}
   annotations:
     "argocd.argoproj.io/hook": PostSync
     "argocd.argoproj.io/hook-delete-policy": HookSucceeded
@@ -15,5 +16,5 @@ spec:
       containers:
         - name: post-hook
           image: "{{ .Values.postHook.image }}"
-          command: {{ toJson .Values.postHook.command }}
+          command: {{ .Values.postHook.command }}
 {{- end }}
