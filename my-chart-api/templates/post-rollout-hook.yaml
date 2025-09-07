@@ -1,0 +1,19 @@
+{{- if .Values.postHook.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "my-api.fullname" . }}-post-hook"
+  labels:
+    app: "{{ include "my-api.name" . }}"
+  annotations:
+    "argocd.argoproj.io/hook": PostSync
+    "argocd.argoproj.io/hook-delete-policy": HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-hook
+          image: "{{ .Values.postHook.image }}"
+          command: {{ toJson .Values.postHook.command }}
+{{- end }}
