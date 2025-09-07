@@ -1,9 +1,10 @@
 {{- if .Values.postSyncJobs }}
 {{- range $index, $job := .Values.postSyncJobs }}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: {{ $job.generateName | default "postsync-job-" }}
+  generateName: {{ $job.generateName | default (printf "postsync-job-%d-" $index) }}
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -18,7 +19,7 @@ spec:
       containers:
         - name: {{ $job.container.name | default (printf "job-%d" $index) }}
           image: "{{ $job.container.image }}"
-          command: {{ toJson $job.container.command | default (list "sh" "-c") }}
-          args: {{ toJson $job.container.args | default (list "echo 'PostSync Job executed'") }}
+          command: {{ toJson ($job.container.command | default (list "sh" "-c")) }}
+          args: {{ toJson ($job.container.args | default (list "echo 'PostSync Job executed'")) }}
 {{- end }}
 {{- end }}

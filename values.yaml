@@ -14,9 +14,9 @@ my-api:
   canary:
     steps:
       - weight: 10
-        pause: 15s
+        pause: 5s
       - weight: 60
-        pause: 15s
+        pause: 5s
       - weight: 100
         pause: 15s
 
@@ -28,19 +28,19 @@ my-api:
       backoffLimit: 1
       restartPolicy: Never
       container:
-        name: post-deploy
+        name: job1
         image: busybox
         command: ["sh", "-c"]
         args: ["for i in $(seq 1 15); do echo $i; sleep 1; done"]
 
-    - generateName: my-app-postsync2-
+    - generateName: my-app-postsync-
       annotations:
         argocd.argoproj.io/hook: PostSync
         argocd.argoproj.io/hook-delete-policy: HookSucceeded
       backoffLimit: 1
       restartPolicy: Never
       container:
-        name: post-deploy2
+        name: job2
         image: busybox
         command: ["sh", "-c"]
         args: ["for i in $(seq 1 10); do echo $i; sleep 1; done"]
