@@ -1,0 +1,20 @@
+{{- if .Values.job-post-sync-test.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: {{ .Values.job-post-sync-test.generateName }}
+  annotations:
+    {{- range $key, $value := .Values.job-post-sync-test.annotations }}
+    {{ $key }}: {{ $value }}
+    {{- end }}
+spec:
+  backoffLimit: {{ .Values.job-post-sync-test.backoffLimit }}
+  template:
+    spec:
+      restartPolicy: {{ .Values.job-post-sync-test.restartPolicy }}
+      containers:
+        - name: {{ .Values.job-post-sync-test.container.name }}
+          image: "{{ .Values.job-post-sync-test.container.image }}"
+          command: {{ toJson .Values.job-post-sync-test.container.command }}
+          args: {{ toJson .Values.job-post-sync-test.container.args }}
+{{- end }}

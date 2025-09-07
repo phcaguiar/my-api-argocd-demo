@@ -122,7 +122,7 @@ tolerations: []
 
 affinity: {}
 
-postSync:
+job-post-sync-test:
   enabled: false
   generateName: app-slack-notification-
   annotations:
