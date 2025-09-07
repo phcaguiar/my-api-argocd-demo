@@ -1,5 +1,5 @@
 my-api:
-  replicaCount: 2
+  replicaCount: 3
   image:
     repository: nginx
     tag: latest
@@ -13,7 +13,9 @@ my-api:
 
   canary:
     steps:
-      - weight: 50
+      - weight: 10
+        pause: 20s
+      - weight: 60
         pause: 20s
       - weight: 100
         pause: 20s
