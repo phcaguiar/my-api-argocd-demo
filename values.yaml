@@ -21,5 +21,7 @@ my-api:
     container:
       name: post-deploy
       image: busybox
-      command: ["echo", "Deploy concluído!"]
-      args: []
+      # command: ["echo", "Deploy concluído!"]
+      # args: []
+      command: ["sh", "-c"]
+      args: ["echo 'Deploy concluído!'; sleep 60"]
