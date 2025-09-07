@@ -5,7 +5,7 @@ my-api:
     tag: latest
   resources:
     requests:
-      cpu: "50m"
+      cpu: "100m"
       memory: "128Mi"
     limits:
       cpu: "500m"
@@ -43,4 +43,4 @@ my-api:
         name: post-deploy2
         image: busybox
         command: ["sh", "-c"]
-        args: ["for i in $(seq 15 1); do echo $i; sleep 1; done"]
+        args: ["for i in $(seq 1 10); do echo $i; sleep 1; done"]
