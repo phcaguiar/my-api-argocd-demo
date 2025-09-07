@@ -20,16 +20,15 @@ my-api:
       - weight: 100
         pause: 15s
 
-  jobpostsynctest:
-    enabled: trye
-    generateName: my-app-postsync-
-    annotations:
-      argocd.argoproj.io/hook: PostSync
-      argocd.argoproj.io/hook-delete-policy: HookSucceeded
-    backoffLimit: 1
-    restartPolicy: Never
-    container:
-      name: post-deploy
-      image: busybox
-      command: ["sh", "-c"]
-      args: ["for i in $(seq 1 15); do echo $i; sleep 1; done"]
+  postSyncJobs:
+    - generateName: my-app-postsync-
+      annotations:
+        argocd.argoproj.io/hook: PostSync
+        argocd.argoproj.io/hook-delete-policy: HookSucceeded
+      backoffLimit: 1
+      restartPolicy: Never
+      container:
+        name: post-deploy
+        image: busybox
+        command: ["sh", "-c"]
+        args: ["for i in $(seq 1 15); do echo $i; sleep 1; done"]
