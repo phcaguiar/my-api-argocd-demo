@@ -10,9 +10,9 @@ spec:
     canary:
       steps:
 {{- range .Values.canary.steps }}
-        - setWeight: {{ .weight }}
+      - setWeight: {{ .weight }}
 {{- if .pause }}
-          pause: { duration: {{ .pause }} }
+      - pause: { duration: {{ .pause }} }
 {{- end }}
 {{- end }}
   selector:
