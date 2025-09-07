@@ -1,21 +1,3 @@
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   generateName: app-slack-notification-
-#   annotations:
-#     argocd.argoproj.io/hook: PostSync
-#     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-# spec:
-#   template:
-#     spec:
-#       containers:
-#         - name: slack-notification
-#           image: busybox
-#           command: ["echo", "PostSync hook executed"]
-#       restartPolicy: Never
-#   backoffLimit: 2
-
-
 {{- if .Values.postSync.enabled }}
 apiVersion: batch/v1
 kind: Job

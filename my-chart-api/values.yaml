@@ -135,3 +135,12 @@ postSync:
     image: busybox
     command: ["echo", "PostSync hook executed"]
     args: []
+
+canary:
+  steps:
+    - weight: 25
+      pause: 10s
+    - weight: 50
+      pause: 10s
+    - weight: 100
+      pause: 10s
