@@ -20,7 +20,7 @@ my-api:
       - weight: 100
         pause: 15s
 
-  job-post-sync-test:
+  jobpostsynctest:
     enabled: trye
     generateName: my-app-postsync-
     annotations:
