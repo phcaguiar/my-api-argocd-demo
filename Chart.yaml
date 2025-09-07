@@ -1,0 +1,7 @@
+apiVersion: v2
+name: my-api-wrapper
+version: 0.1.0
+dependencies:
+  - name: my-api
+    version: 0.1.0
+    repository: "file://./my-chart-api"
