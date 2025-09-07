@@ -1,5 +1,5 @@
 my-api:
-  replicaCount: 5
+  replicaCount: 3
   image:
     repository: nginx
     tag: latest
