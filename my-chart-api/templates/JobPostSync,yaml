@@ -11,6 +11,6 @@ spec:
       containers:
         - name: slack-notification
           image: busybox
-          command: ["/bin/bash", "-c", "echo 'Iniciando...'; sleep 60; echo 'Finalizado!'"]
+          command: ["echo 'Iniciando...'; sleep 60; echo 'Finalizado!'"]
       restartPolicy: Never
   backoffLimit: 2
