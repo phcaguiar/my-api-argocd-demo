@@ -33,4 +33,4 @@ my-api:
       name: post-deploy
       image: busybox
       command: ["sh", "-c"]
-      args: ["for i in $(seq 1 10); do echo $i; sleep 1; done"]
+      args: ["for i in $(seq 1 5); do echo $i; sleep 1; done"]
