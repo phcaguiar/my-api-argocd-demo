@@ -1,12 +1,12 @@
 my-api:
   replicaCount: 1
-  revisionHistoryLimit: 1
+  revisionHistoryLimit: 10
   image:
     repository: nginx
     tag: latest
   resources:
     requests:
-      cpu: "50m"
+      cpu: "100m"
       memory: "128Mi"
     limits:
       cpu: "500m"
