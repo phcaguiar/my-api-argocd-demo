@@ -1,5 +1,5 @@
 my-api:
-  replicaCount: 1
+  replicaCount: 3
   revisionHistoryLimit: 10
   image:
     repository: nginx
