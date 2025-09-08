@@ -6,10 +6,10 @@ my-api:
     tag: latest
   resources:
     requests:
-      cpu: "150m"
+      cpu: "50m"
       memory: "256Mi"
     limits:
-      cpu: "300m"
+      cpu: "250m"
       memory: "512Mi"
 
   canary:
