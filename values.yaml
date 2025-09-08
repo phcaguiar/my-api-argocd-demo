@@ -9,7 +9,7 @@ my-api:
       cpu: "150m"
       memory: "256Mi"
     limits:
-      cpu: "600m"
+      cpu: "300m"
       memory: "512Mi"
 
   canary:
